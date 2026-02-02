@@ -93,7 +93,7 @@ export class IntervalCounter implements Counter {
 
 	private resetAt: number | null = null;
 
-	public id = new Array(3).fill(0).map(() => String.fromCodePoint(Math.floor(Math.random()*26+65))).join("");
+	public readonly id = new Array(3).fill(0).map(() => String.fromCodePoint(Math.floor(Math.random()*26+65))).join("");
 
 	/**
 	 * Create a new base bucket
@@ -171,7 +171,7 @@ export class LeakyCounter implements Counter {
 
 	private resetAt: number | null = null;
 
-	public id = new Array(3).fill(0).map(() => String.fromCodePoint(Math.floor(Math.random()*26+65))).join("");
+	public readonly id = new Array(3).fill(0).map(() => String.fromCodePoint(Math.floor(Math.random()*26+65))).join("");
 
 	/**
 	 * Create a new base bucket
@@ -229,11 +229,11 @@ export class LeakyCounter implements Counter {
  */
 export class Bucket {
 	/** Tracks the state this bucket is in (blocked, running, waiting, etc) and what operations are allowed. */
-	public sm = new SM("ready");
+	public readonly sm = new SM("ready");
 	/** Wrapped functions which always resolve (not reject) after the original function has completed and resolved. The original function may manipulate rate limit buckets in that time before it resolves. */
-	public calls: Array<() => any> = [];
+	public readonly calls: Array<() => any> = [];
 	/** The backing counters of the bucket that determine how many functions can be consumed in a timeframe. */
-	public counters: Array<Counter> = [];
+	public readonly counters: Array<Counter> = [];
 
 	private pauseRequested = false;
 
@@ -384,7 +384,7 @@ export class Bucket {
 	 * @since 0.1.0
 	 */
 	public dropQueue(): void {
-		this.calls = [];
+		this.calls.length = 0;
 	}
 }
 
@@ -397,11 +397,11 @@ export class Ratelimiter {
 	/**
 	 * A Map of Buckets keyed by route keys that store rate limit info
 	 */
-	public buckets = new Map<string, Bucket>();
+	public readonly buckets = new Map<string, Bucket>();
 	/**
 	 * The bucket that limits how many requests per second you can make globally
 	 */
-	public globalBucket = new Bucket([new IntervalCounter(Constants.GLOBAL_REQUESTS_PER_SECOND, 1000)]);
+	public readonly globalBucket = new Bucket([new IntervalCounter(Constants.GLOBAL_REQUESTS_PER_SECOND, 1000)]);
 
 	/**
 	 * If you're being globally rate limited
@@ -571,9 +571,9 @@ export class RequestHandler extends EventEmitter<HandlerEvents> {
 
 					if (bkt) this._applyRatelimitHeaders(bkt, response.headers);
 
-					if (response.status && !Constants.OK_STATUS_CODES.has(response.status) && response.status !== 429) {
-						if (this.options.retryFailed && !Constants.DO_NOT_RETRY_STATUS_CODES.has(response.status) && retries !== 0) return this.request(endpoint, params, method, dataType as any, data, extraHeaders, retries--).then(resolve).catch(reject);
-						throw new DiscordAPIError({ message: await response.text() }, request, response);
+					if (response.status && !Constants.OK_STATUS_CODES.has(response.status)) {
+						if (this.options.retryFailed && !Constants.DO_NOT_RETRY_STATUS_CODES.has(response.status) && retries !== 0) return this.request(endpoint, params, method, dataType as any, data, extraHeaders, response.status === 429 ? 0 : retries--).then(resolve).catch(reject);
+						if (response.status !== 429) throw new DiscordAPIError({ message: await response.text() }, request, response);
 					}
 
 					if (response.status === 429) {

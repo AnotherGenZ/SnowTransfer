@@ -26,7 +26,7 @@ class StageInstanceMethods {
 	 * You can access the methods listed via `client.stageInstance.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Creates a new stage instance associated to a stage channel

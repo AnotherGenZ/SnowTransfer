@@ -47,7 +47,7 @@ class AssetsMethods {
 	 * You can access the methods listed via `client.assets.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get a list of emojis of a guild

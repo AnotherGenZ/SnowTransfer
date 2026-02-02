@@ -6,7 +6,7 @@ import type { RequestHandler as RH } from "../RequestHandler";
 import type {
 	RESTDeleteAPIInviteResult,
 	RESTGetAPIInviteQuery,
-	RESTGetAPIInviteResult,
+	RESTGetAPIInviteResult
 } from "discord-api-types/v10";
 
 import type { RESTGetAPIInviteTargetUsers, RESTGetAPIInviteTargetUsersJobStatus, RESTPutAPIInviteTargetUsers } from "../Types";
@@ -25,7 +25,7 @@ class InviteMethods {
 	 * You can access the methods listed via `client.invite.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get the invite data on an invite id

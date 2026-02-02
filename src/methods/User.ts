@@ -31,7 +31,7 @@ class UserMethods {
 	 * You can access the methods listed via `client.user.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get information about the CurrentUser

@@ -23,7 +23,7 @@ class BotMethods {
 	 * You can access the methods listed via `client.bot.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get the gateway url to connect to

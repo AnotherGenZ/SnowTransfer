@@ -13,7 +13,7 @@ const Constants = {
 	BULK_DELETE_MESSAGES_MIN: 2 as const,
 	BULK_DELETE_MESSAGES_MAX: 100 as const,
 	OK_STATUS_CODES: new Set([200, 201, 204, 304]),
-	DO_NOT_RETRY_STATUS_CODES: new Set([401, 403, 404, 405, 411, 413, 429]),
+	DO_NOT_RETRY_STATUS_CODES: new Set([401, 403, 404, 405, 411, 413]),
 	DEFAULT_RETRY_LIMIT: 3,
 	GLOBAL_REQUESTS_PER_SECOND: 50,
 	async standardMultipartHandler(data: { files: Array<{ name: string; file: Buffer | Blob | File | Readable | ReadableStream }>; data?: any; }): Promise<FormData> {

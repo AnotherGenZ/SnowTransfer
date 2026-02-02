@@ -51,7 +51,7 @@ class WebhookMethods {
 	 * @param requestHandler request handler that calls the rest api
 	 * @param options Options for the SnowTransfer instance
 	 */
-	public constructor(public requestHandler: RH, public options: ST.Options) {}
+	public constructor(public readonly requestHandler: RH, public options: ST.Options) {}
 
 	/**
 	 * Create a new Webhook

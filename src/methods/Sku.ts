@@ -23,7 +23,7 @@ class SkuMethods {
 	 * You can access the methods listed via `client.subscription.method` where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Returns all SKUs for a given application.

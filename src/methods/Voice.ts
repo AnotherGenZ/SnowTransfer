@@ -18,7 +18,7 @@ class VoiceMethods {
 	 * You can access the methods listed via `client.voice.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get currently available voice regions that can be used when creating servers

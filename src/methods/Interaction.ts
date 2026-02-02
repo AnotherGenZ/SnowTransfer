@@ -57,7 +57,7 @@ class InteractionMethods {
 	 * @param requestHandler request handler that calls the rest api
 	 * @param webhooks WebhookMethods class that handles webhook related stuff
 	 */
-	public constructor(public requestHandler: RH, public webhooks: WHM, public options: ST.Options) {}
+	public constructor(public readonly requestHandler: RH, public readonly webhooks: WHM, public options: ST.Options) {}
 
 	/**
 	 * Fetch all global commands for your application

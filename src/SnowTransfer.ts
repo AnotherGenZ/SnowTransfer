@@ -45,41 +45,41 @@ class SnowTransfer {
 	/** The access token to use for requests. Can be a bot or bearer token */
 	public token: string | undefined;
 	/** Methods related to channels */
-	public channel: ChannelMethods;
+	public readonly channel: ChannelMethods;
 	/** Helper to execute REST calls */
-	public requestHandler: RequestHandler;
+	public readonly requestHandler: RequestHandler;
 	/** Methods related to users */
-	public user: UserMethods;
+	public readonly user: UserMethods;
 	/** Methods related to stickers and emojis */
-	public assets: AssetsMethods;
+	public readonly assets: AssetsMethods;
 	/** Methods related to webhooks */
-	public webhook: WebhookMethods;
+	public readonly webhook: WebhookMethods;
 	/** Methods related to guilds */
-	public guild: GuildMethods;
+	public readonly guild: GuildMethods;
 	/** Methods related to guild scheduled events */
-	public guildScheduledEvent: GuildScheduledEventMethods;
+	public readonly guildScheduledEvent: GuildScheduledEventMethods;
 	/** Methods related to guild templates */
-	public guildTemplate: GuildTemplateMethods;
+	public readonly guildTemplate: GuildTemplateMethods;
 	/** Methods related to application commands/interactions */
-	public interaction: InteractionMethods;
+	public readonly interaction: InteractionMethods;
 	/** Methods related to invites */
-	public invite: InviteMethods;
+	public readonly invite: InviteMethods;
 	/** Methods related to voice regions */
-	public voice: VoiceMethods;
+	public readonly voice: VoiceMethods;
 	/** Methods related to getting gateway connect info */
-	public bot: BotMethods;
+	public readonly bot: BotMethods;
 	/** Methods related to guild audit logs */
-	public auditLog: AuditLogMethods;
+	public readonly auditLog: AuditLogMethods;
 	/** Methods related to guild stage instances */
-	public stageInstance: StageInstanceMethods;
+	public readonly stageInstance: StageInstanceMethods;
 	/** Methods related to guild auto mod */
-	public autoMod: AutoModerationMethods;
+	public readonly autoMod: AutoModerationMethods;
 	/** Methods related to entitlements */
-	public entitlement: EntitlementMethods;
+	public readonly entitlement: EntitlementMethods;
 	/** Methods related to SKUs */
-	public sku: SkuMethods;
+	public readonly sku: SkuMethods;
 	/** Ratelimiter used for handling the ratelimits imposed by the rest api */
-	public ratelimiter: Ratelimiter;
+	public readonly ratelimiter: Ratelimiter;
 
 	/**
 	 * Create a new Rest Client

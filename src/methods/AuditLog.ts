@@ -21,7 +21,7 @@ class AuditLogMethods {
 	 * You can access the methods listed via `client.auditLog.method`, where `client` is an initialized SnowTransfer instance
 	 * @param requestHandler request handler that calls the rest api
 	 */
-	public constructor(public requestHandler: RH) {}
+	public constructor(public readonly requestHandler: RH) {}
 
 	/**
 	 * Get the audit logs of the specified guild id
