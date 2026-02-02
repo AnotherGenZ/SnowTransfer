@@ -571,9 +571,9 @@ export class RequestHandler extends EventEmitter<HandlerEvents> {
 
 					if (bkt) this._applyRatelimitHeaders(bkt, response.headers);
 
-					if (response.status && !Constants.OK_STATUS_CODES.has(response.status)) {
-						if (this.options.retryFailed && !Constants.DO_NOT_RETRY_STATUS_CODES.has(response.status) && retries !== 0) return this.request(endpoint, params, method, dataType as any, data, extraHeaders, response.status === 429 ? 0 : retries--).then(resolve).catch(reject);
-						if (response.status !== 429) throw new DiscordAPIError({ message: await response.text() }, request, response);
+					if (response.status && !Constants.OK_STATUS_CODES.has(response.status) && response.status !== 429) {
+						if (this.options.retryFailed && !Constants.DO_NOT_RETRY_STATUS_CODES.has(response.status) && retries !== 0) return this.request(endpoint, params, method, dataType, data, extraHeaders, retries--).then(resolve).catch(reject);
+						throw new DiscordAPIError({ message: await response.text() }, request, response);
 					}
 
 					if (response.status === 429) {
@@ -585,6 +585,8 @@ export class RequestHandler extends EventEmitter<HandlerEvents> {
 							path: endpoint,
 							route: this.ratelimiter.routify(endpoint, method.toUpperCase())
 						});
+
+						if (this.options.retryFailed && retries !== 0) return this.request(endpoint, params, method, dataType, data, extraHeaders, 0).then(resolve).catch(reject);
 
 						throw new DiscordAPIError({ message: b.message, code: b.code ?? 429 }, request, response);
 					}
