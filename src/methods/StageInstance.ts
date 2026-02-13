@@ -4,7 +4,7 @@ import Constants = require("../Constants");
 import type { RequestHandler as RH } from "../RequestHandler";
 
 import type {
-	RESTDeleteAPIStageInstanceResult,
+//	RESTDeleteAPIStageInstanceResult,
 	RESTGetAPIStageInstanceResult,
 	RESTPatchAPIStageInstanceJSONBody,
 	RESTPatchAPIStageInstanceResult,
@@ -103,8 +103,8 @@ class StageInstanceMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.stageInstance.deleteStageInstance("channel id", "They already know who's house this is")
 	 */
-	public async deleteStageInstance(channelId: string, reason?: string): Promise<RESTDeleteAPIStageInstanceResult> {
-		return this.requestHandler.request(Endpoints.STAGE_INSTANCE_CHANNEL(channelId), {}, "delete", "json", {}, Constants.reasonHeader(reason)) as RESTDeleteAPIStageInstanceResult;
+	public async deleteStageInstance(channelId: string, reason?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.STAGE_INSTANCE_CHANNEL(channelId), {}, "delete", "json", {}, Constants.reasonHeader(reason));
 	}
 }
 

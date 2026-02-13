@@ -4,8 +4,8 @@ import Endpoints = require("../Endpoints");
 import type { RequestHandler as RH } from "../RequestHandler";
 
 import type {
-	RESTDeleteAPIGuildEmojiResult,
-	RESTDeleteAPIGuildStickerResult,
+//	RESTDeleteAPIGuildEmojiResult,
+//	RESTDeleteAPIGuildStickerResult,
 	RESTGetAPIApplicationEmojisResult,
 	RESTGetAPIApplicationEmojiResult,
 	RESTGetAPIGuildEmojiResult,
@@ -25,7 +25,7 @@ import type {
 	RESTPostAPIApplicationEmojiJSONBody,
 	RESTPatchAPIApplicationEmojiJSONBody,
 	RESTPatchAPIApplicationEmojiResult,
-	RESTDeleteAPIApplicationEmojiResult
+//	RESTDeleteAPIApplicationEmojiResult
 } from "discord-api-types/v10";
 
 import type { Blob } from "buffer";
@@ -146,8 +146,8 @@ class AssetsMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.assets.deleteGuildEmoji("guild id", "emoji id", "wasn't nice")
 	 */
-	public async deleteGuildEmoji(guildId: string, emojiId: string, reason?: string): Promise<RESTDeleteAPIGuildEmojiResult> {
-		return this.requestHandler.request(Endpoints.GUILD_EMOJI(guildId, emojiId), {}, "delete", "json", {}, Constants.reasonHeader(reason)) as RESTDeleteAPIGuildEmojiResult;
+	public async deleteGuildEmoji(guildId: string, emojiId: string, reason?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.GUILD_EMOJI(guildId, emojiId), {}, "delete", "json", {}, Constants.reasonHeader(reason));
 	}
 
 	/**
@@ -278,8 +278,8 @@ class AssetsMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.assets.deleteGuildSticker("guild id", "sticker id", "It was too nice")
 	 */
-	public async deleteGuildSticker(guildId: string, stickerId: string, reason?: string): Promise<RESTDeleteAPIGuildStickerResult> {
-		return this.requestHandler.request(Endpoints.GUILD_STICKER(guildId, stickerId), {}, "delete", "json", {}, Constants.reasonHeader(reason)) as RESTDeleteAPIGuildStickerResult;
+	public async deleteGuildSticker(guildId: string, stickerId: string, reason?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.GUILD_STICKER(guildId, stickerId), {}, "delete", "json", {}, Constants.reasonHeader(reason));
 	}
 
 	/**
@@ -367,8 +367,8 @@ class AssetsMethods {
 	 * client.assets.deleteAppEmoji("app id", "emoji id") // OH GOD THE UNIVERSE IS COLLAPSING
 	 * // We're safe. The emoji is gone. For now...
 	 */
-	public async deleteAppEmoji(appId: string, emojiId: string): Promise<RESTDeleteAPIApplicationEmojiResult> {
-		return this.requestHandler.request(Endpoints.APPLICATION_EMOJI(appId, emojiId), {}, "delete", "json") as Promise<RESTDeleteAPIApplicationEmojiResult>;
+	public async deleteAppEmoji(appId: string, emojiId: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.APPLICATION_EMOJI(appId, emojiId), {}, "delete", "json");
 	}
 }
 

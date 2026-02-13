@@ -3,7 +3,7 @@ import Endpoints = require("../Endpoints");
 import type { RequestHandler as RH } from "../RequestHandler";
 
 import type {
-	RESTDeleteAPICurrentUserGuildResult,
+//	RESTDeleteAPICurrentUserGuildResult,
 	RESTGetAPICurrentUserApplicationRoleConnectionResult,
 	RESTGetAPICurrentUserConnectionsResult,
 	RESTGetAPICurrentUserGuildsQuery,
@@ -108,8 +108,8 @@ class UserMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.user.leaveGuild("guildId")
 	 */
-	public async leaveGuild(guildId: string): Promise<RESTDeleteAPICurrentUserGuildResult> {
-		return this.requestHandler.request(Endpoints.USER_GUILD("@me", guildId), {}, "delete", "json") as RESTDeleteAPICurrentUserGuildResult;
+	public async leaveGuild(guildId: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.USER_GUILD("@me", guildId), {}, "delete", "json");
 	}
 
 	/**

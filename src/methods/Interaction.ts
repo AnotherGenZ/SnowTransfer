@@ -7,8 +7,8 @@ import type ST = require("../SnowTransfer");
 
 import {
 	InteractionResponseType,
-	type RESTDeleteAPIInteractionFollowupResult,
-	type RESTDeleteAPIInteractionOriginalResponseResult,
+//	type RESTDeleteAPIInteractionFollowupResult,
+//	type RESTDeleteAPIInteractionOriginalResponseResult,
 	type RESTGetAPIApplicationCommandPermissionsResult,
 	type RESTGetAPIApplicationCommandResult,
 	type RESTGetAPIApplicationCommandsResult,
@@ -131,8 +131,8 @@ class InteractionMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.interaction.deleteApplicationCommand("appId", "cmdId")
 	 */
-	public async deleteApplicationCommand(appId: string, cmdId: string): Promise<never> { // no return type in api types
-		return this.requestHandler.request(Endpoints.APPLICATION_COMMAND(appId, cmdId), {}, "delete", "json") as never;
+	public async deleteApplicationCommand(appId: string, cmdId: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.APPLICATION_COMMAND(appId, cmdId), {}, "delete", "json");
 	}
 
 	/**
@@ -228,8 +228,8 @@ class InteractionMethods {
 	 * const client = new SnowTransfer("TOKEN")
 	 * client.interaction.deleteGuildApplicationCommand("appId", "guildId", "cmdId")
 	 */
-	public async deleteGuildApplicationCommand(appId: string, guildId: string, cmdId: string): Promise<never> { // no return type in api types
-		return this.requestHandler.request(Endpoints.APPLICATION_GUILD_COMMAND(appId, guildId, cmdId), {}, "delete", "json") as never;
+	public async deleteGuildApplicationCommand(appId: string, guildId: string, cmdId: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.APPLICATION_GUILD_COMMAND(appId, guildId, cmdId), {}, "delete", "json");
 	}
 
 	/**
@@ -360,8 +360,8 @@ class InteractionMethods {
 	 * const client = new SnowTransfer() // This endpoint does not require a Bot token. The interaction token alone will suffice
 	 * client.interaction.deleteOriginalInteractionResponse("appId", "token")
 	 */
-	public async deleteOriginalInteractionResponse(appId: string, token: string): Promise<RESTDeleteAPIInteractionOriginalResponseResult> {
-		return this.webhooks.deleteWebhookMessage(appId, token, "@original") as RESTDeleteAPIInteractionOriginalResponseResult;
+	public async deleteOriginalInteractionResponse(appId: string, token: string): Promise<void> {
+		return this.webhooks.deleteWebhookMessage(appId, token, "@original");
 	}
 
 	/**
@@ -426,8 +426,8 @@ class InteractionMethods {
 	 * const client = new SnowTransfer() // This endpoint does not require a Bot token. The interaction token alone will suffice
 	 * client.interaction.deleteFollowupMessage("appId", "token", "messageId")
 	 */
-	public async deleteFollowupMessage(appId: string, token: string, messageId: string): Promise<RESTDeleteAPIInteractionFollowupResult> {
-		return this.webhooks.deleteWebhookMessage(appId, token, messageId) as RESTDeleteAPIInteractionFollowupResult;
+	public async deleteFollowupMessage(appId: string, token: string, messageId: string): Promise<void> {
+		return this.webhooks.deleteWebhookMessage(appId, token, messageId);
 	}
 }
 

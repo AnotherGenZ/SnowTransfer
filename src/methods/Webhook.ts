@@ -5,8 +5,8 @@ import type { RequestHandler as RH } from "../RequestHandler";
 import type ST = require("../SnowTransfer");
 
 import {
-	type RESTDeleteAPIWebhookResult,
-	type RESTDeleteAPIWebhookWithTokenMessageResult,
+//	type RESTDeleteAPIWebhookResult,
+//	type RESTDeleteAPIWebhookWithTokenMessageResult,
 	type RESTGetAPIChannelWebhooksResult,
 	type RESTGetAPIGuildWebhooksResult,
 	type RESTGetAPIWebhookResult,
@@ -197,8 +197,8 @@ class WebhookMethods {
 	 * const client = new SnowTransfer("TOKEN");
 	 * client.webhook.deleteWebhook("webhook Id")
 	 */
-	public async deleteWebhook(webhookId: string, reason?: string): Promise<RESTDeleteAPIWebhookResult> {
-		return this.requestHandler.request(Endpoints.WEBHOOK(webhookId), {}, "delete", "json", undefined, Constants.reasonHeader(reason)) as RESTDeleteAPIWebhookResult;
+	public async deleteWebhook(webhookId: string, reason?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.WEBHOOK(webhookId), {}, "delete", "json", undefined, Constants.reasonHeader(reason));
 	}
 
 	/**
@@ -213,8 +213,8 @@ class WebhookMethods {
 	 * const client = new SnowTransfer(); // No token needed if webhook token is provided
 	 * client.webhook.deleteWebhookToken("webhook Id", "webhook token")
 	 */
-	public async deleteWebhookToken(webhookId: string, token: string, reason?: string): Promise<RESTDeleteAPIWebhookResult> {
-		return this.requestHandler.request(Endpoints.WEBHOOK_TOKEN(webhookId, token), {}, "delete", "json", undefined, Constants.reasonHeader(reason)) as RESTDeleteAPIWebhookResult;
+	public async deleteWebhookToken(webhookId: string, token: string, reason?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.WEBHOOK_TOKEN(webhookId, token), {}, "delete", "json", undefined, Constants.reasonHeader(reason));
 	}
 
 	/**
@@ -329,8 +329,8 @@ class WebhookMethods {
 	 * @param threadId Id of the thread the message was sent in
 	 * @returns Resolves the Promise on successful execution
 	 */
-	public async deleteWebhookMessage(webhookId: string, token: string, messageId: string, threadId?: string): Promise<RESTDeleteAPIWebhookWithTokenMessageResult> {
-		return this.requestHandler.request(Endpoints.WEBHOOK_TOKEN_MESSAGE(webhookId, token, messageId), { thread_id: threadId }, "delete", "json") as RESTDeleteAPIWebhookWithTokenMessageResult;
+	public async deleteWebhookMessage(webhookId: string, token: string, messageId: string, threadId?: string): Promise<void> {
+		return this.requestHandler.request(Endpoints.WEBHOOK_TOKEN_MESSAGE(webhookId, token, messageId), { thread_id: threadId }, "delete", "json");
 	}
 }
 
