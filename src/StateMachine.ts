@@ -85,13 +85,14 @@ class StateMachine extends EventEmitter<StateMachineEvents> {
 	 * @since 0.16.0
 	 * @param event The event that can trigger this transition.
 	 * @param to The name of the state this transition would go to.
+	 * @param cb A callback to run when this transition occurs.
 	 */
-	public defineUniversalTransition(event: string, to: string): this {
+	public defineUniversalTransition(event: string, to: string, cb?: (...args: any[]) => unknown): this {
 		this.guardEditable();
 		this.deferredTransitionCreators.push(() => {
 			for (const [stateName, state] of this.states.entries()) {
 				if (!state.transitions.has(event)) {
-					this.defineTransition(stateName, event, to);
+					this.defineTransition(stateName, event, to, cb);
 				}
 			}
 		});
